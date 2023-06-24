@@ -5,7 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simon Game</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <script
+      src="https://kit.fontawesome.com/fe1554876f.js"
+      crossorigin="anonymous"
+    ></script>
     <script defer src="script.js"></script>
   </head>
-  <body></body>
+  <body>
+    <header>SIMON</header>
+    <main>
+      <section id="board">
+        <div id="green" class="panel"></div>
+        <div id="red" class="panel"></div>
+        <div id="yellow" class="panel""></div>
+        <div id="blue" class="panel"></div>
+      </section>
+      <section id="messages">
+        <button id="play">PLAY</button>
+        <p>You lost!</p>
+        <button id="replay">REPLAY</button>
+        <div class="current-score-play">Current<br>Score<br>
+            <p class="current-score-number-play">4</p>
+        </div>
+        <div class="highest-score-play">Highest<br>Score<br>
+            <p class="highest-score-number-play">5</p>
+        </div>
+      </section>
+    </main>
+    <footer>
+        <a href="https://github.com/chajiiiii"
+          ><i class="fa-brands fa-github"></i
+        ></a>
+      <p>Made By<br>Jihyeon Cha</p>
+    </footer>
+  </body>
 </html>
