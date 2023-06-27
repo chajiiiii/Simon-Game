@@ -49,7 +49,7 @@ section#board {
 }
 
 div.panel:hover {
-  border: 2px solid var(--white);
+  border: 2px solid var(--white) !important;
   cursor: pointer;
 }
 
@@ -74,19 +74,19 @@ div#blue {
 }
 
 div#green:hover {
-  background-color: var(--light-green);
+  background-color: var(--light-green) !important;
 }
 
 div#red:hover {
-  background-color: var(--light-red);
+  background-color: var(--light-red) !important;
 }
 
 div#yellow:hover {
-  background-color: var(--light-yellow);
+  background-color: var(--light-yellow) !important;
 }
 
 div#blue:hover {
-  background-color: var(--light-blue);
+  background-color: var(--light-blue) !important;
 }
 
 section#messages {
@@ -224,19 +224,21 @@ button#play-again-btn:hover {
   color: var(--white);
 }
 
-.current-score-end {
+#messages > .current-score-end {
   border-radius: 0 0 0 20rem;
   text-align: right;
   margin-right: 0.8rem;
+  padding: 0.5rem 0.5rem 4rem 0.5rem;
 }
 
-.highest-score-end {
+#messages > .highest-score-end {
   border-radius: 0 0 20rem 0;
   margin-left: 0.8rem;
+  padding: 0.5rem 0.5rem 4rem 0.5rem;
 }
 
-.current-score-number,
-.highest-score-number {
+.current-score-number-end,
+.highest-score-number-end {
   /* display: flex; */
   display: none;
   color: var(--white);
@@ -246,14 +248,14 @@ button#play-again-btn:hover {
   font-size: 2.5rem;
 }
 
-.current-score-number {
-  float: right;
-  padding-right: 0.5rem;
+.current-score-number-end {
+  padding: 3rem 1rem 1rem 3.5rem;
+  position: absolute;
 }
 
-.highest-score-number {
-  float: left;
-  padding-left: 0.5rem;
+.highest-score-number-end {
+  padding: 3rem 4rem 1rem 0.5rem;
+  position: absolute;
 }
 
 /* Footer */
