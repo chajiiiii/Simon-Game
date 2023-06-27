@@ -32,8 +32,6 @@ const playBtn = document.getElementById("play-btn");
 const playAgainBtn = document.getElementById("play-again-btn");
 const buttons = document.querySelectorAll("button");
 
-playBtn.addEventListener("click", render);
-
 buttons.forEach(function (button) {
   button.addEventListener("mouseover", hoverSoundEffct);
 });
@@ -46,9 +44,13 @@ buttons.forEach(function (button) {
   button.addEventListener("click", clickSoundEffect);
 });
 
+playBtn.addEventListener("click", render);
+
 colorPanels.forEach(function (panel) {
   panel.addEventListener("click", handlePlayerClick);
 });
+
+playAgainBtn.addEventListener("click", playAgain);
 
 function hoverSoundEffct() {
   audios[0].play();
@@ -62,12 +64,21 @@ function renderStart() {
   randomSequenceArr = [];
   playerSequenceArr = [];
 
+  curScore.classList.add("current-score-play");
+  curScore.classList.remove("current-score-end");
   curScore.style.display = "inline-flex";
+
+  curScoreNum.classList.add("current-score-number-play");
+  curScoreNum.classList.remove("current-score-number-end");
   curScoreNum.style.display = "inline-flex";
+
+  highScore.classList.add("highest-score-play");
+  highScore.classList.remove("highest-score-end");
   highScore.style.display = "inline-flex";
+
+  highScoreNum.classList.add("highest-score-number-play");
+  highScoreNum.classList.remove("highest-score-number-end");
   highScoreNum.style.display = "inline-flex";
-  curScoreNum.innerText = 0;
-  highScoreNum.innerText = 0;
 }
 
 function renderCountdown(callback) {
@@ -91,6 +102,19 @@ function renderCountdown(callback) {
 }
 
 function render() {
+  if (randomSequenceArr.length > 0) {
+    messageEl.style.display = "none";
+
+    curScore.style.display = "none";
+    curScoreNum.style.display = "none";
+
+    highScore.style.display = "none";
+    highScoreNum.style.display = "none";
+
+    playAgainBtn.style.display = "none";
+
+    console.log(randomSequenceArr);
+  }
   renderCountdown(function () {
     renderStart();
     getRandomSequence(colors, randomSequenceArr);
@@ -146,7 +170,6 @@ function playRandomSequence() {
 }
 
 function checkSequence() {
-  // if (playerSequenceArr.length !== randomSequenceArr.length) return false;
   for (let i = 0; i < playerSequenceArr.length; i++) {
     console.log(playerSequenceArr[i], colors[randomSequenceArr[i]]);
     if (playerSequenceArr[i] !== colors[randomSequenceArr[i]]) {
@@ -249,4 +272,12 @@ function endGame() {
   highScoreNum.style.display = "flex";
 
   playAgainBtn.style.display = "flex";
+}
+
+function playAgain() {
+  currentScore = 0;
+  curScoreNum.innerText = currentScore;
+  console.log(randomSequenceArr);
+
+  render();
 }
