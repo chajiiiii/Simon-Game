@@ -9,6 +9,7 @@ let currentScore = 0;
 let highestScore = 0;
 let randomSequenceArr = [];
 let playerSequenceArr = [];
+const winningScore = 10;
 
 const audios = document.getElementsByTagName("audio");
 console.log(audios);
@@ -26,7 +27,6 @@ const curScore = document.querySelector(".current-score-play");
 const curScoreNum = document.querySelector(".current-score-number-play");
 const highScore = document.querySelector(".highest-score-play");
 const highScoreNum = document.querySelector(".highest-score-number-play");
-const winningScore = 3;
 
 const playBtn = document.getElementById("play-btn");
 const playAgainBtn = document.getElementById("play-again-btn");
@@ -41,14 +41,10 @@ colorPanels.forEach(function (panel) {
 });
 
 buttons.forEach(function (button) {
-  button.addEventListener("click", clickSoundEffect);
+  button.addEventListener("click", btnClickSoundEffect);
 });
 
 playBtn.addEventListener("click", render);
-
-colorPanels.forEach(function (panel) {
-  panel.addEventListener("click", handlePlayerClick);
-});
 
 playAgainBtn.addEventListener("click", playAgain);
 
@@ -56,51 +52,11 @@ function hoverSoundEffct() {
   audios[0].play();
 }
 
-function clickSoundEffect() {
+function btnClickSoundEffect() {
   audios[1].play();
 }
 
-function renderStart() {
-  randomSequenceArr = [];
-  playerSequenceArr = [];
-
-  curScore.classList.add("current-score-play");
-  curScore.classList.remove("current-score-end");
-  curScore.style.display = "inline-flex";
-
-  curScoreNum.classList.add("current-score-number-play");
-  curScoreNum.classList.remove("current-score-number-end");
-  curScoreNum.style.display = "inline-flex";
-
-  highScore.classList.add("highest-score-play");
-  highScore.classList.remove("highest-score-end");
-  highScore.style.display = "inline-flex";
-
-  highScoreNum.classList.add("highest-score-number-play");
-  highScoreNum.classList.remove("highest-score-number-end");
-  highScoreNum.style.display = "inline-flex";
-}
-
-function renderCountdown(callback) {
-  playBtn.style.display = "none";
-
-  let count = 3;
-  countdownEl.style.display = "flex";
-  countdownEl.innerText = count;
-  audios[2].play();
-  const timerId = setInterval(function () {
-    count--;
-    if (count) {
-      audios[2].play();
-      countdownEl.innerText = count;
-    } else {
-      clearInterval(timerId);
-      countdownEl.style.display = "none";
-      callback();
-    }
-  }, 1000);
-}
-
+// After Clicking Play Button
 function render() {
   if (randomSequenceArr.length > 0) {
     messageEl.style.display = "none";
@@ -121,11 +77,96 @@ function render() {
   });
 }
 
+// Countdown 3
+function renderCountdown(callback) {
+  playBtn.style.display = "none";
+
+  let count = 3;
+  countdownEl.style.display = "flex";
+  countdownEl.innerText = count;
+  audios[2].play();
+  const timerId = setInterval(function () {
+    count--;
+    if (count) {
+      audios[2].play();
+      countdownEl.innerText = count;
+    } else {
+      clearInterval(timerId);
+      countdownEl.style.display = "none";
+      callback();
+    }
+  }, 1000);
+}
+
+// After Countdown
+function renderStart() {
+  randomSequenceArr = [];
+  playerSequenceArr = [];
+
+  curScore.classList.add("current-score-play");
+  curScore.classList.remove("current-score-end");
+  curScore.style.display = "inline-flex";
+
+  curScoreNum.classList.add("current-score-number-play");
+  curScoreNum.classList.remove("current-score-number-end");
+  curScoreNum.style.display = "inline-flex";
+
+  highScore.classList.add("highest-score-play");
+  highScore.classList.remove("highest-score-end");
+  highScore.style.display = "inline-flex";
+
+  highScoreNum.classList.add("highest-score-number-play");
+  highScoreNum.classList.remove("highest-score-number-end");
+  highScoreNum.style.display = "inline-flex";
+
+  colorPanels.forEach(function (panel) {
+    panel.addEventListener("click", handlePlayerClick);
+  });
+}
+
+// Generating Random Sequence Using the Colors Object Keys
+function getRandomSequence() {
+  const sequence = Object.keys(colors);
+  let randomSequence = Math.floor(Math.random() * sequence.length);
+  randomSequenceArr.push(randomSequence);
+
+  return randomSequenceArr, randomSequence, playRandomSequence();
+}
+
+// Showing the Random Sequence on Color Panels
+function playRandomSequence() {
+  let i = 0;
+  const randomSequenceLength = randomSequenceArr.length;
+
+  colorPanels.forEach(function (panel) {
+    panel.removeEventListener("click", handlePlayerClick);
+  });
+
+  const intervalId = setInterval(function () {
+    const colorIdx = randomSequenceArr[i];
+    const colorPanel = getColorPanel(colorIdx);
+
+    panelColorChange(colorPanel);
+    playPanelSound(colorIdx);
+
+    i++;
+    if (i >= randomSequenceLength) {
+      clearInterval(intervalId);
+      colorPanels.forEach(function (panel) {
+        panel.addEventListener("click", handlePlayerClick);
+      });
+    }
+  }, 800);
+}
+
+// Player Clicking Color Panels
 function handlePlayerClick(event) {
   const clickedPanel = event.target.id;
   playerSequenceArr.push(clickedPanel);
+  console.log(clickedPanel);
 
   const isCorrect = checkSequence();
+  clickPanelEffects(clickedPanel);
 
   if (isCorrect && playerSequenceArr.length === randomSequenceArr.length) {
     increaseScore();
@@ -138,37 +179,11 @@ function handlePlayerClick(event) {
     playRandomSequence();
   }
   if (!isCorrect) {
-    console.log("game over");
     endGame();
   }
 }
 
-function getRandomSequence() {
-  const sequence = Object.keys(colors);
-  let randomSequence = Math.floor(Math.random() * sequence.length);
-  randomSequenceArr.push(randomSequence);
-
-  return randomSequenceArr, randomSequence, playRandomSequence();
-}
-
-function playRandomSequence() {
-  let i = 0;
-  const randomSequenceLength = randomSequenceArr.length;
-
-  const intervalId = setInterval(function () {
-    const colorIdx = randomSequenceArr[i];
-    const colorPanel = getColorPanel(colorIdx);
-
-    playPanelSound(colorIdx);
-    panelColorChange(colorPanel);
-
-    i++;
-    if (i >= randomSequenceLength) {
-      clearInterval(intervalId);
-    }
-  }, 800);
-}
-
+// Compare Player's Sequence with Random Generated Sequence
 function checkSequence() {
   for (let i = 0; i < playerSequenceArr.length; i++) {
     console.log(playerSequenceArr[i], colors[randomSequenceArr[i]]);
@@ -179,6 +194,7 @@ function checkSequence() {
   return true;
 }
 
+// Increasing Score
 function increaseScore() {
   currentScore = playerSequenceArr.length;
   curScoreNum.innerText = currentScore;
@@ -188,10 +204,12 @@ function increaseScore() {
   }
 }
 
+// Clearing Player's Previous Sequence
 function clearPlayerSequence() {
   return (playerSequenceArr = []);
 }
 
+// Getting Color Panels' by Random Sequence Numbers
 function getColorPanel(colorIdx) {
   if (colorIdx === 0) {
     return greenPanel;
@@ -204,11 +222,54 @@ function getColorPanel(colorIdx) {
   }
 }
 
+// Adding A Sound and Color Effects When Player Clicks Color Panels
+function clickPanelEffects(clickedPanel) {
+  if (clickedPanel === "green") {
+    greenPanel.style.backgroundColor = "var(--light-green)";
+    greenPanel.style.border = "2px solid var(--white)";
+    beepSounds[0].play();
+  } else if (clickedPanel === "red") {
+    redPanel.style.backgroundColor = "var(--light-red)";
+    redPanel.style.border = "2px solid var(--white)";
+    beepSounds[1].play();
+  } else if (clickedPanel === "yellow") {
+    yellowPanel.style.backgroundColor = "var(--light-yellow)";
+    yellowPanel.style.border = "2px solid var(--white)";
+    beepSounds[2].play();
+  } else if (clickedPanel === "blue") {
+    bluePanel.style.backgroundColor = "var(--light-blue)";
+    bluePanel.style.border = "2px solid var(--white)";
+    beepSounds[3].play();
+  }
+  setTimeout(function () {
+    resetClickedPanelColor(clickedPanel);
+  }, 400);
+}
+
+// Resetting the Color Panels to Original Colors After Player Clicks the Sequence
+function resetClickedPanelColor(clickedPanel) {
+  if (clickedPanel === "green") {
+    greenPanel.style.backgroundColor = "var(--green)";
+    greenPanel.style.border = "none";
+  } else if (clickedPanel === "red") {
+    redPanel.style.backgroundColor = "var(--red)";
+    redPanel.style.border = "none";
+  } else if (clickedPanel === "yellow") {
+    yellowPanel.style.backgroundColor = "var(--yellow)";
+    yellowPanel.style.border = "none";
+  } else if (clickedPanel === "blue") {
+    bluePanel.style.backgroundColor = "var(--blue)";
+    bluePanel.style.border = "none";
+  }
+}
+
+// Adding A Sound Effect When Color Panels Are Showing the Sequence
 function playPanelSound(colorIdx) {
   beepSounds[colorIdx].play();
   console.log(colorIdx);
 }
 
+// Adding A Color Effect when Color Panels Are Showing the Sequence
 function panelColorChange(colorPanel) {
   if (colorPanel === greenPanel) {
     greenPanel.style.backgroundColor = "var(--light-green)";
@@ -228,6 +289,7 @@ function panelColorChange(colorPanel) {
   }, 500);
 }
 
+// Resetting the Color Panels to Original Colors After Showing the Sequence
 function resetPanelColor(colorPanel) {
   if (colorPanel === greenPanel) {
     greenPanel.style.backgroundColor = "var(--green)";
@@ -244,9 +306,10 @@ function resetPanelColor(colorPanel) {
   }
 }
 
+// Ending the Game
 function endGame() {
   colorPanels.forEach(function (panel) {
-    panel.removeEventListener("click", handlePlayerClick, true);
+    panel.removeEventListener("click", handlePlayerClick);
   });
 
   if (currentScore === winningScore) {
@@ -274,6 +337,7 @@ function endGame() {
   playAgainBtn.style.display = "flex";
 }
 
+// After Clicking the Play Again Button
 function playAgain() {
   currentScore = 0;
   curScoreNum.innerText = currentScore;
