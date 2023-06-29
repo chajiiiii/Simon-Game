@@ -9,10 +9,9 @@ let currentScore = 0;
 let highestScore = 0;
 let randomSequenceArr = [];
 let playerSequenceArr = [];
-const winningScore = 10;
+const winningScore = 20;
 
 const audios = document.getElementsByTagName("audio");
-console.log(audios);
 const beepSounds = document.querySelectorAll('[id^="beep-sound"]');
 
 const greenPanel = document.getElementById("green");
@@ -32,6 +31,7 @@ const playBtn = document.getElementById("play-btn");
 const playAgainBtn = document.getElementById("play-again-btn");
 const buttons = document.querySelectorAll("button");
 
+// Event Listeners
 buttons.forEach(function (button) {
   button.addEventListener("mouseover", hoverSoundEffct);
 });
@@ -48,10 +48,12 @@ playBtn.addEventListener("click", render);
 
 playAgainBtn.addEventListener("click", playAgain);
 
+// Color Panels Hover Sound
 function hoverSoundEffct() {
   audios[0].play();
 }
 
+// Play & Play Again Button Sound
 function btnClickSoundEffect() {
   audios[1].play();
 }
@@ -68,9 +70,8 @@ function render() {
     highScoreNum.style.display = "none";
 
     playAgainBtn.style.display = "none";
-
-    console.log(randomSequenceArr);
   }
+
   renderCountdown(function () {
     renderStart();
     getRandomSequence(colors, randomSequenceArr);
@@ -163,7 +164,6 @@ function playRandomSequence() {
 function handlePlayerClick(event) {
   const clickedPanel = event.target.id;
   playerSequenceArr.push(clickedPanel);
-  console.log(clickedPanel);
 
   const isCorrect = checkSequence();
   clickPanelEffects(clickedPanel);
@@ -186,7 +186,6 @@ function handlePlayerClick(event) {
 // Compare Player's Sequence with Random Generated Sequence
 function checkSequence() {
   for (let i = 0; i < playerSequenceArr.length; i++) {
-    console.log(playerSequenceArr[i], colors[randomSequenceArr[i]]);
     if (playerSequenceArr[i] !== colors[randomSequenceArr[i]]) {
       return false;
     }
@@ -266,7 +265,6 @@ function resetClickedPanelColor(clickedPanel) {
 // Adding A Sound Effect When Color Panels Are Showing the Sequence
 function playPanelSound(colorIdx) {
   beepSounds[colorIdx].play();
-  console.log(colorIdx);
 }
 
 // Adding A Color Effect when Color Panels Are Showing the Sequence
@@ -341,7 +339,6 @@ function endGame() {
 function playAgain() {
   currentScore = 0;
   curScoreNum.innerText = currentScore;
-  console.log(randomSequenceArr);
 
   render();
 }
