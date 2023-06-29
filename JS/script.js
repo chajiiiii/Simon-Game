@@ -10,7 +10,7 @@ let highestScore = 0;
 let randomSequenceArr = [];
 let playerSequenceArr = [];
 const winningScore = 20;
-
+// New comment
 const audios = document.getElementsByTagName("audio");
 const beepSounds = document.querySelectorAll('[id^="beep-sound"]');
 
