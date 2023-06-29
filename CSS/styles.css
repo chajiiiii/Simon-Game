@@ -17,7 +17,7 @@
 }
 
 body {
-  background-image: url("/IMAGE/background.webp");
+  background-image: url("./../IMAGE/background.webp");
   margin: 5rem auto;
 }
 
