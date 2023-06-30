@@ -262,7 +262,7 @@ By adding & removing click event listener for color panels, I could make the pla
 I could place the play/play again buttons, render message and scores outside of the game board, but I wanted something simpler looking and that’s why I tried putting everything in the circle in the middle. As I was writing code, it was more to write and more complicated than I expected, but I made it.
 <br><br>
 
-## To do's
+## Planned future enhancements
 
 - Make it responsive to mobile
   <br><br>
