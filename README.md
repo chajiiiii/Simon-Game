@@ -9,17 +9,13 @@ Simon(game) is a short-term memory game. It’s a game that shows random sequenc
 
 ## Description
 
----
-
 I chose this game for my first project because it’s one of the most familiar games I played in my childhood.\
 This is a **solo** project created using **HTML**, **CSS** and **JavaScript**.
 <br><br>
 
 ## Planning
 
----
-
-### - Wireframe
+### - Wireframe & Pseudocode
 
 ![simon-game-wireframe](https://github.com/chajiiiii/Simon-Game/assets/93015253/3e70929d-cac5-41d0-9526-058580ba7f19)
 This is the wireframe of UI. I wanted to make it look simple, and include all necessary game features.
@@ -87,8 +83,6 @@ This is the initial pseudocode below.
 <br><br>
 
 ## Code Process
-
----
 
 I started this project with writing a pseudocode and sketching wireframe first. Then I started HTML and CSS parts. It was fun because I could see the changes I made.\
 The most challenging part for me was to structure this game code. It was difficult for me to actually start writing code even if I had my pseudocode. I tried to divide smaller and smaller to write actual code, and also, I searched for information a lot.\
@@ -198,14 +192,10 @@ For this game, one of the important features was that panels need to show sound&
 
 ## Game Screenshots
 
----
-
 ![gameScreenshots](https://github.com/chajiiiii/Simon-Game/assets/93015253/2191e806-e6f6-4742-82c5-9d149618b150)
 <br><br>
 
 ## Key Learnings & Wins
-
----
 
 ### - Usage of `setInterval()` method.
 
@@ -274,14 +264,10 @@ I could place the play/play again buttons, render message and scores outside of 
 
 ## To do's
 
----
-
 - Make it responsive to mobile
   <br><br>
 
 ## Sources
-
----
 
 > Game background image (Adobe Stock)\
 > Game sounds (Freesound)
