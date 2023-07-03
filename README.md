@@ -2,7 +2,7 @@
 
 # Simon
 
-Simon(game) is a short-term memory game. It’s a game that shows random sequence and requires a player to repeat it exactly the same by pressing the color panels. Reach the highest score 20, then you win! 😎
+Simon(game) is a short-term memory game. It’s a game that shows a random sequence and requires a player to repeat it exactly the same by pressing the color panels. Reach the highest score 20, then you win! 😎
 
 [🟩🟨 Click here to play 🟥🟦](https://chajiiiii.github.io/Simon-Game/)
 <br><br>
@@ -18,7 +18,7 @@ This is a **solo** project created using **HTML**, **CSS** and **JavaScript**.
 ### - Wireframe & Pseudocode
 
 ![simon-game-wireframe](https://github.com/chajiiiii/Simon-Game/assets/93015253/3e70929d-cac5-41d0-9526-058580ba7f19)
-This is the wireframe of UI. I wanted to make it look simple, and include all necessary game features.
+This is the wireframe of the UI. I wanted to make it look simple, and include all necessary game features.
 <br><br>
 
 <details>
@@ -84,9 +84,9 @@ This is the initial pseudocode below.
 
 ## Code Process
 
-I started this project with writing a pseudocode and sketching wireframe first. Then I started HTML and CSS parts. It was fun because I could see the changes I made.\
+I started this project by writing a pseudocode and sketching wireframe first. Then I started HTML and CSS parts. It was fun because I could see the changes I made.\
 The most challenging part for me was to structure this game code. It was difficult for me to actually start writing code even if I had my pseudocode. I tried to divide smaller and smaller to write actual code, and also, I searched for information a lot.\
-Eventually, I figured out by writing small pices one by one. For my next projects, I would like to be able to structure code with less struggles.
+Eventually, I figured it out by writing small pices one by one. For my next projects, I would like to be able to structure code with less struggles.
 <br><br>
 
 ```JavaScript
@@ -116,7 +116,7 @@ function playRandomSequence() {
 }
 ```
 
-In the code snippet above, I learned when to use setInterval() method. I used this method to show the randomly generated sequence repeating from first to last one, one by one with visual and sound effects.
+In the code snippet above, I learned when to use the setInterval() method. I used this method to show the randomly generated sequence repeating from first to last one, one by one with visual and sound effects.
 <br><br>
 
 ```JavaScript
@@ -143,7 +143,7 @@ function handlePlayerClick(event) {
 }
 ```
 
-My game kept generating random sequence even after winning condition was met. I tried to put the if condition here and there but didn’t work. Eventually, I figured it out by placing it after the ‘increaseScore’ function call with return. Thinking about it now, it was a simple logic and I learned how I can approach to this kind of matter.
+My game kept generating a random sequence even after the winning condition was met. I tried to put the if condition here and there but it didn’t work. Eventually, I figured it out by placing it after the ‘increaseScore’ function call with return. Thinking about it now, it was simple logic and I learned how I can approach this kind of matter.
 <br><br>
 
 ```JavaScript
@@ -187,7 +187,7 @@ function resetClickedPanelColor(clickedPanel) {
 }
 ```
 
-For this game, one of the important features was that panels need to show sound&visual effects as the random sequence are showing and when they are clicked by a player. I used setTimeout function to make the visual effects gone(return to original colors) after some time.
+For this game, one of the important features was that panels need to show sound&visual effects as the random sequence is showing and when they are clicked by a player. I used the setTimeout function to make the visual effects disappear(return to original colors) after some time.
 <br><br>
 
 ## Game Screenshots
@@ -221,7 +221,7 @@ function renderCountdown(callback) {
 }
 ```
 
-I used setInterval method in this game for countdown and showing sequence. It was a great method to use for this kind of game, and I like how I used it.
+I used the setInterval method in this game for countdown and showing a sequence. It was a great method to use for this kind of game, and I like how I used it.
 <br><br>
 
 ### - Making the player not able to click while the random sequence is showing & able to click afterwards.
@@ -253,7 +253,7 @@ function playRandomSequence() {
 }
 ```
 
-By adding & removing click event listener for color panels, I could make the player not able to click while the computer is showing the sequence, and make the player able to click afterwards. If there are other ways of doing this task, I would like to learn more.
+By adding & removing a click event listener for color panels, I could make the player not able to click while the computer is showing the sequence, and make the player able to click afterwards. If there are other ways of doing this task, I would like to learn more.
 <br><br>
 
 ### - Making render messages and buttons all in the circle in the middle.
