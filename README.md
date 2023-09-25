@@ -9,8 +9,9 @@ Simon(game) is a short-term memory game. It’s a game that shows a random seque
 
 ## Description
 
-I chose this game for my first project because it’s one of the most familiar games I played in my childhood.\
-This is a **solo** project created using **HTML**, **CSS** and **JavaScript**.
+I chose this game for my first project because it’s one of the most familiar games I played in my childhood.
+
+This project was developed independently and completed within a seven-day timeframe, using **HTML**, **CSS** and **JavaScript**.
 <br><br>
 
 ## Planning
