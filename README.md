@@ -85,6 +85,9 @@ This is the initial pseudocode below.
 ## Code Process
 
 I started this project by writing a pseudocode and sketching wireframe first. Then I started HTML and CSS parts. It was fun because I could see the changes I made.\
+
+### Challenges
+
 The most challenging part for me was to structure this game code. It was difficult for me to actually start writing code even if I had my pseudocode. I tried to divide smaller and smaller to write actual code, and also, I searched for information a lot.\
 Eventually, I figured it out by writing small pices one by one. For my next projects, I would like to be able to structure code with less struggles.
 <br><br>
